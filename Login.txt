@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Cordova Login Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px;
+            width: 200px;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        // Function to validate login
+        function login() {
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+            let result = document.getElementById("result");
+
+            // Example hardcoded credentials (you can replace with API call)
+            let validUser = "admin";
+            let validPass = "12345";
+
+            if (username === "" || password === "") {
+                result.innerHTML = "⚠️ Please enter both username and password.";
+                result.style.color = "orange";
+                return;
+            }
+
+            if (username === validUser && password === validPass) {
+                result.innerHTML = "✅ Login Successful!";
+                result.style.color = "green";
+            } else {
+                result.innerHTML = "❌ Invalid Username or Password.";
+                result.style.color = "red";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Login Page</h2>
+    <input type="text" id="username" placeholder="Enter Username" /><br>
+    <input type="password" id="password" placeholder="Enter Password" /><br>
+    <button onclick="login()">Login</button>
+    <p id="result"></p>
+</body>
+</html>
