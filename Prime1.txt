@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Prime Checker</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="floating">Enter a number</ion-label>
+    <ion-input type="number" [(ngModel)]="number"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" (click)="checkPrime()">Check</ion-button>
+
+  <ion-text color="primary">
+    <h2 *ngIf="result">{{ result }}</h2>
+  </ion-text>
+</ion-content>
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-prime-checker',
+  templateUrl: './prime-checker.page.html',
+  styleUrls: ['./prime-checker.page.scss'],
+})
+export class PrimeCheckerPage {
+  number: number | null = null;
+  result: string = '';
+
+  // Function to check if number is prime
+  private isPrime(num: number): boolean {
+    if (num <= 1) return false;
+    if (num === 2) return true;
+    if (num % 2 === 0) return false;
+
+    for (let i = 3; i <= Math.sqrt(num); i += 2) {
+      if (num % i === 0) return false;
+    }
+    return true;
+  }
+
+  // Function to check user input
+  checkPrime() {
+    if (this.number === null || isNaN(this.number)) {
+      this.result = '⚠️ Please enter a valid number.';
+      return;
+    }
+
+    if (this.number === 1) {
+      this.result = 'ℹ️ 1 is neither Prime nor Composite.';
+    } else if (this.isPrime(this.number)) {
+      this.result = `✅ ${this.number} is a Prime number.`;
+    } else {
+      this.result = `❌ ${this.number} is NOT a Prime number (Composite).`;
+    }
+  }
+}
