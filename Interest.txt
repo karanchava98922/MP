@@ -1,0 +1,13 @@
+function calculateInterest() {
+    let p = parseFloat(document.getElementById("principal").value);
+    let r = parseFloat(document.getElementById("rate").value);
+    let t = parseFloat(document.getElementById("time").value);
+
+    if (isNaN(p) || isNaN(r) || isNaN(t)) {
+        document.getElementById("result").innerText = "⚠️ Please enter valid numbers!";
+        return;
+    }
+
+    let si = (p * r * t) / 100;
+    document.getElementById("result").innerText = `Simple Interest = ${si.toFixed(2)}`;
+}
